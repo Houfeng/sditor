@@ -1,13 +1,8 @@
 init:
   - name: pkginfo
 
-docs:
-  - name: doc
-  - name: typedoc
-
 dev:
   - name: typescript
-  - name: faked-core
   - name: webpack
     entry: ./src/example/*.{js,jsx,ts,tsx}
     template: ./assets/*.html
@@ -15,7 +10,6 @@ dev:
       disabled: true
     external: false
     watch: true
-  - name: doc
   - name: server
     port: 6005
   - name: browser-sync
@@ -23,8 +17,6 @@ dev:
 build:
   - name: clean
     target: ./build
-  - name: call
-    pipe: docs
   - name: typescript
   - name: webpack
     common:
@@ -49,20 +41,7 @@ build:
         commonjs: mota
         commonjs2: mota
         root: mota 
-      '@ali/aps': 
-        commonjs: '@ali/aps'
-        commonjs2: '@ali/aps'
-        root: aps 
 
 test:
   - name: lint
   - name: tslint
-  
-publish:
-  - name: 'autoversion'
-  - name: '@ali/ci-tnpm-publish'
-    tag: latest
-
-ci-publish:
-  - name: 'autoversion'
-  - name: '@ali/ci-tnpm-publish'
