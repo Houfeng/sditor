@@ -1,5 +1,4 @@
 .designer {
-  box-shadow: inset 0 0 5px hsla(0, 0%, 48%, .25);
   width: 100%;
   height: 100%;
   @border: 1px solid #ddd;
@@ -8,30 +7,30 @@
   .conf {
     border-left: @border;
     width: 400px;
-    overflow: auto;
+
+    .inner {
+      padding: @padding;
+      overflow: auto;
+    }
+  }
+
+  .topbar {
+    .add {
+      cursor: pointer;
+      color: #999;
+
+      &:hover {
+        color: #333;
+      }
+
+      float: right;
+      line-height: 36px;
+    }
   }
 
   .tree {
     display: inline-block;
     overflow: hidden;
-  }
-
-  .topbar {
-    @height: 36px;
-    height: @height;
-    line-height: @height;
-    border-bottom: 1px dotted #ddd;
-    padding: 0 @padding;
-    text-align: right;
-
-    .add {
-      cursor: pointer;
-    }
-  }
-
-  .conf {
-    overflow: auto;
-    padding: @padding;
   }
 
   .rst__moveHandle,
@@ -60,7 +59,8 @@
     }
 
     .active {
-      color: #0366d6;
+      color: #762;
+      font-weight: bold;
     }
   }
 
@@ -94,15 +94,22 @@
     padding: 16px 0;
   }
 
-  .rst__placeholder {
-    height: 68px;
-    width: 300px;
-    padding: 10px;
+  .placeholder {
+    @width: 300px;
+    @hieght: 70px;
+    width: @width;
+    height: @hieght;
+    line-height: @hieght;
     position: absolute;
+    text-align: center;
     left: 50%;
     top: 50%;
-    margin: -34px auto auto -150px;
+    margin: (0 - @hieght/2) auto auto (0 - @width/2);
     z-index: 10;
+    @color: #ddd;
+    border: 3px dotted @color;
+    color: @color;
+    font-size: 18px;
   }
 
   .rst__toolbarButton {
@@ -113,7 +120,7 @@
     .fa {
       font-size: 14px;
       color: #999;
-      vertical-align: middle;
+      vertical-align: initial;
     }
 
     &:hover {

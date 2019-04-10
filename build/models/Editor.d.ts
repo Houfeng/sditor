@@ -6,8 +6,10 @@ export declare class EditorModel {
     current: INode;
     setCurrent: (node: INode) => void;
     add: () => void;
+    remove: (path: string[]) => void;
     addToParent: (parent: INode) => void;
     setData: (data: any) => void;
     readonly source: string;
+    readonly schema: any;
     setMode: (mode: Mode) => Mode;
 }

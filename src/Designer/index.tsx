@@ -1,12 +1,12 @@
 import * as React from "react";
 import SortableTree from "react-sortable-tree";
-import { BasicConf } from "../configurators/BasicConf";
 import { binding, model } from "mota";
 import { EditorModel } from "../models/Editor";
 import { INode, PropNode } from "../models/PropNode";
 import { Type } from "../models/Type";
 import "./index.less";
 import DockPanel = require("react-dock-panel");
+import { AutoConf } from "../configurators/AutoConf";
 
 export interface IDesignerPorps {
   model: EditorModel;
@@ -17,29 +17,32 @@ export interface IDesignerPorps {
 export class Designer extends React.Component<IDesignerPorps> {
   model: EditorModel;
 
-  generateNodeProps = ({ node }) => {
+  generateNodeProps = ({ node, path }) => {
     const title = this.renderNodeTitle(node);
-    const buttons = this.renderNodeButtons(node);
+    const buttons = this.renderNodeButtons(node, path);
     const subtitle = this.renderNodeSubTitle(node);
     return { title, subtitle, buttons };
   };
 
   renderNodeTitle(node: INode) {
     const { current, setCurrent } = this.model;
-    const active = current.id === node.id ? "active" : "";
+    const { id, name, title } = node;
+    const active = current.id === id ? "active" : "";
+    const showTitle = name === title ? name : `${name}: ${title}`;
     return (
       <span className={`title ${active}`} onClick={() => setCurrent(node)}>
-        {node.title}
+        {node.isItems ? node.name : showTitle}
       </span>
     );
   }
 
   renderNodeSubTitle(node: INode) {
-    return node.type;
+    const { setCurrent } = this.model;
+    return <span onClick={() => setCurrent(node)}>{node.type}</span>;
   }
 
-  renderNodeButtons(node: INode) {
-    const { addToParent, setCurrent } = this.model;
+  renderNodeButtons(node: INode, path: string[]) {
+    const { addToParent, remove, setCurrent } = this.model;
     const items = [
       {
         button: (
@@ -49,7 +52,14 @@ export class Designer extends React.Component<IDesignerPorps> {
             onClick={() => setCurrent(node)}
           />
         ),
-        types: [Type.object, Type.array, Type.string, Type.number, Type.boolean]
+        check: (node: INode) =>
+          [
+            Type.object,
+            Type.array,
+            Type.string,
+            Type.number,
+            Type.boolean
+          ].includes(node.type)
       },
       {
         button: (
@@ -59,25 +69,43 @@ export class Designer extends React.Component<IDesignerPorps> {
             onClick={() => addToParent(node)}
           />
         ),
-        types: [Type.object]
+        check: (node: INode) => [Type.object].includes(node.type)
       },
       {
-        button: <i key="remove" className="fa fa-remove" />,
-        types: [Type.object, Type.array, Type.string, Type.number, Type.boolean]
+        button: (
+          <i
+            key="remove"
+            className="fa fa-remove"
+            onClick={() => remove(path)}
+          />
+        ),
+        check: (node: INode) =>
+          !node.isItems &&
+          [
+            Type.object,
+            Type.array,
+            Type.string,
+            Type.number,
+            Type.boolean
+          ].includes(node.type)
       }
     ];
-    return items
-      .filter(item => item.types.includes(node.type))
-      .map(item => item.button);
+    return items.filter(item => item.check(node)).map(item => item.button);
+  }
+
+  renderPlaceholder() {
+    return <div className="placeholder">No content</div>;
   }
 
   renderTree() {
     const { data, setData } = this.model;
-    const { canNodeHaveChildren, canDrop, getNodeKey } = PropNode;
+    if (!data || data.length < 1) return this.renderPlaceholder();
+    const { canNodeHaveChildren, canDrop, canDrag, getNodeKey } = PropNode;
     return (
       <SortableTree
         rowHeight={38}
         canDrop={canDrop}
+        canDrag={canDrag}
         getNodeKey={getNodeKey}
         canNodeHaveChildren={canNodeHaveChildren}
         generateNodeProps={this.generateNodeProps}
@@ -91,21 +119,27 @@ export class Designer extends React.Component<IDesignerPorps> {
     const { current } = this.model;
     if (!current) return;
     const origin = JSON.parse(JSON.stringify(current));
-    return <BasicConf key={current.id} model={current} origin={origin} />;
+    return <AutoConf key={current.id} model={current} origin={origin} />;
   }
 
   render() {
     const { add: addNode } = this.model;
     return (
       <DockPanel className="designer">
-        <DockPanel className="conf" dock="right">
-          {this.renderConf()}
-        </DockPanel>
-        <DockPanel className="topbar" dock="top">
-          <i className="fa fa-plus add" onClick={addNode} />
+        <DockPanel dock="right" className="conf">
+          <DockPanel className="topbar" dock="top">
+            <span className="caption">CONF</span>
+          </DockPanel>
+          <DockPanel dock="fill" className="inner">
+            {this.renderConf()}
+          </DockPanel>
         </DockPanel>
         <DockPanel className="tree" dock="fill">
-          {this.renderTree()}
+          <DockPanel className="topbar" dock="top">
+            <span className="caption">DESIGN</span>
+            <i className="fa fa-plus add" onClick={addNode} />
+          </DockPanel>
+          <DockPanel dock="fill">{this.renderTree()}</DockPanel>
         </DockPanel>
       </DockPanel>
     );

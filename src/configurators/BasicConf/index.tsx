@@ -1,42 +1,61 @@
 import * as React from "react";
 import { binding, model, watch } from "mota";
-import { Input } from "../../Input";
 import { INode, PropNode } from "../../models/PropNode";
+import { Input } from "../../Input";
 import { Type } from "../../models/Type";
 import { TypePicker } from "../../TypePicker";
+import { YamlEditor } from "../../YamlEditor";
 import "./index.less";
 
-export interface IBasicConf {
+export interface IConfProps {
   model: INode;
   origin?: INode;
 }
 
 @model
 @binding
-export class BasicConf extends React.Component<IBasicConf> {
+export class BasicConf extends React.Component<IConfProps> {
   model: INode;
+
   render() {
     if (!this.props.model) return <span />;
     return (
       <div className="node-conf">
+        {this.renderBasic()}
+        {this.renderMore()}
+      </div>
+    );
+  }
+
+  renderBasic() {
+    const { isItems } = this.model;
+    return (
+      <div>
         <TypePicker data-bind="type" />
-        <Input label="Name:" type="text" data-bind="name" />
-        <Input label="Title" type="text" data-bind="title" />
+        <Input label="Field:" type="text" data-bind="name" disabled={isItems} />
+        <Input label="Title:" type="text" data-bind="title" />
         <Input label="Description:" type="text" data-bind="description" />
       </div>
     );
   }
 
-  @watch((model: INode) => `${model.id}:${model.type}`)
+  renderMore() {
+    return (
+      <div>
+        <YamlEditor label="More:" data-bind="more" />
+      </div>
+    );
+  }
+
+  @watch((model: INode) => model.type)
   onTypeChange() {
     const { type } = this.model;
     if (type === Type.array) {
       const name = "items",
-        title = name;
-      this.model.children = [new PropNode({ name, title })];
-      return;
-    }
-    if (type !== Type.object) {
+        title = name,
+        isItems = true;
+      this.model.children = [new PropNode({ name, title, isItems })];
+    } else {
       this.model.children = [];
     }
   }

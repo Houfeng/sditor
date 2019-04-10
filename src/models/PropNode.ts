@@ -13,6 +13,8 @@ export interface INode {
   description?: string;
   children?: INode[];
   expanded?: boolean;
+  isItems?: boolean;
+  more?: string;
 }
 
 export class PropNode implements INode {
@@ -23,6 +25,7 @@ export class PropNode implements INode {
   children: INode[] = [];
   expanded = false;
   description = "";
+  more = "";
 
   public isType(type: Type) {
     return this.type === type;
@@ -39,6 +42,11 @@ export class PropNode implements INode {
   static canDrop = (opts: any) => {
     const nextParent: INode = opts.nextParent;
     return !nextParent || nextParent.type === Type.object;
+  };
+
+  static canDrag = (opts: any) => {
+    const node: INode = opts.node;
+    return node && !node.isItems;
   };
 
   static modelify(list: INode[]) {

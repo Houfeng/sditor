@@ -11477,13 +11477,115 @@ div.aps-select.aps-size-medium .aps-selection {
   min-height: 32px;
   line-height: 30px;
 }
+.designer {
+  width: 100%;
+  height: 100%;
+}
+.designer .conf {
+  border-left: 1px solid #ddd;
+  width: 400px;
+}
+.designer .conf .inner {
+  padding: 12px;
+  overflow: auto;
+}
+.designer .topbar .add {
+  cursor: pointer;
+  color: #999;
+  float: right;
+  line-height: 36px;
+}
+.designer .topbar .add:hover {
+  color: #333;
+}
+.designer .tree {
+  display: inline-block;
+  overflow: hidden;
+}
+.designer .rst__moveHandle,
+.designer .rst__rowContents {
+  border-radius: 0;
+  box-shadow: none;
+}
+.designer .rst__moveHandle {
+  width: 26px;
+}
+.designer .rst__rowContents {
+  background: #f8f8f8;
+}
+.designer .rst__rowTitle,
+.designer .rst__rowSubtitle {
+  font-weight: normal;
+  font-size: 14px;
+  display: inline-block;
+  color: #333;
+}
+.designer .rst__rowTitle .title,
+.designer .rst__rowSubtitle .title {
+  cursor: pointer;
+}
+.designer .rst__rowTitle .active,
+.designer .rst__rowSubtitle .active {
+  color: #762;
+  font-weight: bold;
+}
+.designer .rst__rowSubtitle {
+  font-size: 10px;
+  padding: 0 8px;
+  color: #bbb;
+  font-style: italic;
+}
+.designer .rst__rowWrapper {
+  padding: 4px 4px 4px 0;
+}
+.designer .rst__collapseButton,
+.designer .rst__expandButton {
+  box-shadow: 0 0 0 1px #999;
+}
+.designer .rst__lineHalfHorizontalRight::before,
+.designer .rst__lineFullVertical::after,
+.designer .rst__lineHalfVerticalTop::after,
+.designer .rst__lineHalfVerticalBottom::after,
+.designer .rst__lineChildren::after {
+  background-color: #999;
+}
+.designer .ReactVirtualized__Grid.ReactVirtualized__List.rst__virtualScrollOverride {
+  padding: 16px 0;
+}
+.designer .placeholder {
+  width: 300px;
+  height: 70px;
+  line-height: 70px;
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  margin: -35px auto auto -150px;
+  z-index: 10;
+  border: 3px dotted #ddd;
+  color: #ddd;
+  font-size: 18px;
+}
+.designer .rst__toolbarButton {
+  margin-left: 8px;
+  margin-right: 2px;
+  cursor: pointer;
+}
+.designer .rst__toolbarButton .fa {
+  font-size: 14px;
+  color: #999;
+  vertical-align: initial;
+}
+.designer .rst__toolbarButton:hover .fa {
+  color: #333;
+}
 .control {
   border: 1px solid #e3e3e3;
   margin-bottom: 8px;
   position: relative;
   overflow: hidden;
 }
-.control input[type="text"],
+.control input,
 .control button,
 .control textarea,
 .control select {
@@ -11518,7 +11620,7 @@ div.aps-select.aps-size-medium .aps-selection {
   position: relative;
   overflow: hidden;
 }
-.control input[type="text"],
+.control input,
 .control button,
 .control textarea,
 .control select {
@@ -11547,115 +11649,69 @@ div.aps-select.aps-size-medium .aps-selection {
 .control.select select {
   padding-right: 10px !important;
 }
-.designer {
-  box-shadow: inset 0 0 5px rgba(122, 122, 122, 0.25);
-  width: 100%;
-  height: 100%;
-}
-.designer .conf {
-  border-left: 1px solid #ddd;
-  width: 400px;
-  overflow: auto;
-}
-.designer .tree {
-  display: inline-block;
+.control {
+  border: 1px solid #e3e3e3;
+  margin-bottom: 8px;
+  position: relative;
   overflow: hidden;
 }
-.designer .topbar {
-  height: 36px;
-  line-height: 36px;
-  border-bottom: 1px dotted #ddd;
-  padding: 0 12px;
-  text-align: right;
-}
-.designer .topbar .add {
-  cursor: pointer;
-}
-.designer .conf {
-  overflow: auto;
-  padding: 12px;
-}
-.designer .rst__moveHandle,
-.designer .rst__rowContents {
+.control input,
+.control button,
+.control textarea,
+.control select {
+  outline: none;
   border-radius: 0;
-  box-shadow: none;
-}
-.designer .rst__moveHandle {
-  width: 26px;
-}
-.designer .rst__rowContents {
-  background: #f8f8f8;
-}
-.designer .rst__rowTitle,
-.designer .rst__rowSubtitle {
-  font-weight: normal;
+  padding: 6px 8px;
+  display: block;
+  width: 100%;
   font-size: 14px;
-  display: inline-block;
-  color: #333;
+  border: 0;
 }
-.designer .rst__rowTitle .title,
-.designer .rst__rowSubtitle .title {
-  cursor: pointer;
+.control select {
+  -webkit-appearance: button;
 }
-.designer .rst__rowTitle .active,
-.designer .rst__rowSubtitle .active {
-  color: #0366d6;
+.control.yaml-editor {
+  padding-top: 29px !important;
 }
-.designer .rst__rowSubtitle {
-  font-size: 10px;
-  padding: 0 8px;
-  color: #bbb;
-  font-style: italic;
-}
-.designer .rst__rowWrapper {
-  padding: 4px 4px 4px 0;
-}
-.designer .rst__collapseButton,
-.designer .rst__expandButton {
-  box-shadow: 0 0 0 1px #999;
-}
-.designer .rst__lineHalfHorizontalRight::before,
-.designer .rst__lineFullVertical::after,
-.designer .rst__lineHalfVerticalTop::after,
-.designer .rst__lineHalfVerticalBottom::after,
-.designer .rst__lineChildren::after {
-  background-color: #999;
-}
-.designer .ReactVirtualized__Grid.ReactVirtualized__List.rst__virtualScrollOverride {
-  padding: 16px 0;
-}
-.designer .rst__placeholder {
-  height: 68px;
-  width: 300px;
-  padding: 10px;
+.control.yaml-editor label {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -34px auto auto -150px;
-  z-index: 10;
+  left: 0px;
+  top: 0;
+  padding: 0 8px;
+  font-size: 12px;
+  color: #888;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border-bottom: 1px dotted #eee;
+  height: 29px;
+  line-height: 29px;
 }
-.designer .rst__toolbarButton {
-  margin-left: 8px;
-  margin-right: 2px;
-  cursor: pointer;
+.control.yaml-editor .alert {
+  float: right;
+  font-size: 12px;
+  color: #ccc;
 }
-.designer .rst__toolbarButton .fa {
-  font-size: 14px;
-  color: #999;
-  vertical-align: middle;
+.control.yaml-editor .codemirror-editor {
+  border-radius: 0;
+  border: none;
 }
-.designer .rst__toolbarButton:hover .fa {
-  color: #333;
+.control.yaml-editor .codemirror-editor .CodeMirror,
+.control.yaml-editor .codemirror-editor .CodeMirror-scroll {
+  box-shadow: none;
+  background: transparent;
 }
-.codemirror-editor {
+.source .codemirror-editor {
   border-radius: 0;
   overflow: hidden;
   border: 0;
 }
-.codemirror-editor,
-.codemirror-editor .CodeMirror,
-.codemirror-editor .CodeMirror-scroll {
+.source .codemirror-editor,
+.source .codemirror-editor .CodeMirror,
+.source .codemirror-editor .CodeMirror-scroll {
   height: 100%;
+  box-shadow: none;
+  background: transparent;
 }
 .sditor {
   background: #fff;
@@ -11683,6 +11739,19 @@ div.aps-select.aps-size-medium .aps-selection {
 .sditor .toolbar .fa.active {
   box-shadow: inset 0 0 5px rgba(122, 122, 122, 0.25);
   color: #333;
+}
+.sditor .view {
+  box-shadow: inset 0 0 5px rgba(122, 122, 122, 0.25);
+}
+.sditor .topbar {
+  height: 36px;
+  line-height: 36px;
+  border-bottom: 1px dotted #ddd;
+  padding: 0 12px;
+  text-align: left;
+}
+.sditor .topbar .caption {
+  color: #ccc;
 }
 
 /*# sourceMappingURL=index.css.map*/

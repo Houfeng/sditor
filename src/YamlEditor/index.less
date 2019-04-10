@@ -1,0 +1,38 @@
+@import "../common/control.less";
+
+.control.yaml-editor {
+  @labelHeight: 29px;
+  padding-top: @labelHeight  !important;
+
+  label {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    padding: 0 8px;
+    font-size: 12px;
+    color: #888;
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    border-bottom: 1px dotted #eee;
+    height: @labelHeight;
+    line-height: @labelHeight;
+  }
+
+  .alert {
+    float: right;
+    font-size: 12px;
+    color: #ccc;
+  }
+
+  .codemirror-editor {
+    border-radius: 0;
+    border: none;
+
+    .CodeMirror,
+    .CodeMirror-scroll {
+      box-shadow: none;
+      background: transparent;
+    }
+  }
+}
