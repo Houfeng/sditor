@@ -1,5 +1,5 @@
 {
-  "name": "@ali/sditor",
+  "name": "sditor",
   "version": "0.1.0",
   "description": "",
   "main": "./build/js/index.js",
