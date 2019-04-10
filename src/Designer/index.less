@@ -1,0 +1,125 @@
+.designer {
+  box-shadow: inset 0 0 5px hsla(0, 0%, 48%, .25);
+  width: 100%;
+  height: 100%;
+  @border: 1px solid #ddd;
+  @padding: 12px;
+
+  .conf {
+    border-left: @border;
+    width: 400px;
+    overflow: auto;
+  }
+
+  .tree {
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .topbar {
+    @height: 36px;
+    height: @height;
+    line-height: @height;
+    border-bottom: 1px dotted #ddd;
+    padding: 0 @padding;
+    text-align: right;
+
+    .add {
+      cursor: pointer;
+    }
+  }
+
+  .conf {
+    overflow: auto;
+    padding: @padding;
+  }
+
+  .rst__moveHandle,
+  .rst__rowContents {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .rst__moveHandle {
+    width: 26px;
+  }
+
+  .rst__rowContents {
+    background: #f8f8f8;
+  }
+
+  .rst__rowTitle,
+  .rst__rowSubtitle {
+    font-weight: normal;
+    font-size: 14px;
+    display: inline-block;
+    color: #333;
+
+    .title {
+      cursor: pointer;
+    }
+
+    .active {
+      color: #0366d6;
+    }
+  }
+
+  .rst__rowSubtitle {
+    font-size: 10px;
+    padding: 0 8px;
+    color: #bbb;
+    font-style: italic;
+  }
+
+  .rst__rowWrapper {
+    padding: 4px 4px 4px 0;
+  }
+
+  @lineColor: #999;
+
+  .rst__collapseButton,
+  .rst__expandButton {
+    box-shadow: 0 0 0 1px @lineColor;
+  }
+
+  .rst__lineHalfHorizontalRight::before,
+  .rst__lineFullVertical::after,
+  .rst__lineHalfVerticalTop::after,
+  .rst__lineHalfVerticalBottom::after,
+  .rst__lineChildren::after {
+    background-color: @lineColor;
+  }
+
+  .ReactVirtualized__Grid.ReactVirtualized__List.rst__virtualScrollOverride {
+    padding: 16px 0;
+  }
+
+  .rst__placeholder {
+    height: 68px;
+    width: 300px;
+    padding: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -34px auto auto -150px;
+    z-index: 10;
+  }
+
+  .rst__toolbarButton {
+    margin-left: 8px;
+    margin-right: 2px;
+    cursor: pointer;
+
+    .fa {
+      font-size: 14px;
+      color: #999;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      .fa {
+        color: #333;
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+init:
+  - name: pkginfo
+
+docs:
+  - name: doc
+  - name: typedoc
+
+dev:
+  - name: typescript
+  - name: faked-core
+  - name: webpack
+    entry: ./src/example/*.{js,jsx,ts,tsx}
+    template: ./assets/*.html
+    common:
+      disabled: true
+    external: false
+    watch: true
+  - name: doc
+  - name: server
+    port: 6005
+  - name: browser-sync
+
+build:
+  - name: clean
+    target: ./build
+  - name: call
+    pipe: docs
+  - name: typescript
+  - name: webpack
+    common:
+      disabled: true
+    entry: ./src/*.{js,jsx,ts,tsx}
+    library: true
+    umd:
+      library: 'formor'
+      libraryTarget: 'umd'
+      umdNamedDefine: true
+    compress: false
+    externals:
+      react: 
+        commonjs: react
+        commonjs2: react
+        root: React
+      react-dom: 
+        commonjs: react-dom
+        commonjs2: react-dom
+        root: ReactDOM
+      mota: 
+        commonjs: mota
+        commonjs2: mota
+        root: mota 
+      '@ali/aps': 
+        commonjs: '@ali/aps'
+        commonjs2: '@ali/aps'
+        root: aps 
+
+test:
+  - name: lint
+  - name: tslint
+  
+publish:
+  - name: 'autoversion'
+  - name: '@ali/ci-tnpm-publish'
+    tag: latest
+
+ci-publish:
+  - name: 'autoversion'
+  - name: '@ali/ci-tnpm-publish'

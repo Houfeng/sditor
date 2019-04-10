@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.aps-btn,
+.aps-icon,
+.aps-select {
+  user-select: none;
+}
+
+.aps-btn,
+.aps-select {
+  cursor: pointer;
+}
+
+button.aps-btn {
+  &.aps-size-medium {
+    @height: 32px;
+    height: @height;
+    min-height: @height;
+    line-height: @height - 2px;
+  }
+}
+
+div.aps-select {
+  text-align: left;
+  &.aps-size-small .aps-selection {
+    @height: 28px;
+    height: @height;
+    min-height: @height;
+    line-height: @height - 2px;
+  }
+  &.aps-size-medium .aps-selection {
+    @height: 32px;
+    height: @height;
+    min-height: @height;
+    line-height: @height - 2px;
+  }
+}

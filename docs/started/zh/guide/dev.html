@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>开发扩展 - Formor 文档</title>
+  <meta name="keywords" content="开发扩展" />
+  <meta name="description" content="开发扩展" />
+  <meta name="author" content="doczilla">
+  <base href="../../" route="%7B%22lang%22%3A%22zh%22%2C%22group%22%3A%22guide%22%2C%22doc%22%3A%22dev%22%7D" />
+  <link href="./assets/index.css" rel="stylesheet">
+  <link href="./plugins/doczilla-card/index.css" rel="stylesheet" /><link href="./plugins/doczilla-details/index.css" rel="stylesheet" /><link href="./plugins/doczilla-highlight/index.css" rel="stylesheet" /></head>
+</head>
+
+<body>
+  <div id="root"><div data-reactroot=""><nav class="navbar navbar-default"><div class="container-fluid"><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="./"><i class="icon fa fa-graduation-cap" aria-hidden="true"></i><span class="name">Formor 文档</span></a></div><div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"><form class="navbar-form navbar-left"><div class="form-group search"><span class="separator"></span><input type="text" class="form-control" placeholder="Search by keyword ..." value=""/></div></form><ul class="nav navbar-nav navbar-right"><li class="dropdown locales"><a class="dropdown-toggle" data-toggle="dropdown" role="button">中文<!-- --> <span class="caret"></span></a><ul class="dropdown-menu"><li><a href="zh/guide/dev.html">中文</a></li></ul></li></ul></div></div></nav><div class="container"><div class="panel panel-default"><div class="panel-body"><div class="row"><div class="col-md-3 col-side"><div class="catalog"><ul class="group"><li class="group-item"><a><i class="fa fa-bookmark" aria-hidden="true"></i>使用文档</a><ul class="doc"><li class="doc-item"><a class="" href="zh/guide/use.html">如何使用</a></li><li class="doc-item"><a class="active" href="zh/guide/dev.html">开发扩展</a></li></ul></li></ul></div></div><div class="col-md-9 col-main"><div class="article markdown-body"><h1 id="%E5%BC%80%E5%8F%91%E6%89%A9%E5%B1%95">开发扩展</h1>
+<p>Formor 具备一个可灵活扩展的结构，本文将介绍一下如何扩展 Formor。
+扩展是为了扩展 Formor 的部件类型，以提供更多的能力，让使用 Formor 的系统能更深度的集成，
+比如，在项目可扩展「文件上传」部件。</p>
+<p>API 说明A: <a href="../api">点击查看详细 API 说明</a></p>
+<h2 id="%E5%BC%80%E5%8F%91%E8%87%AA%E5%AE%9A%E4%B9%89-renderder">开发自定义 Renderder</h2>
+<p>在这里通过简单 <code>StringRenderer</code> 来做一个说明，
+每个 <code>Renderer</code> 都分成了 <code>View</code> 和 <code>Model</code> 两部分。</p>
+<p><code>View</code> 的实现代码及说明：</p>
+<pre><code class="language-js"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> model <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"mota"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Renderer <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@ali/formor"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> StringViewModel <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./ViewModel"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token string">"./index.less"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> Input <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"@ali/aps"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> isNull <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"ntils"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+@<span class="token function">model</span><span class="token punctuation">(</span>StringViewModel<span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">StringRenderer</span> <span class="token keyword">extends</span> <span class="token class-name">Renderer</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">//声明处理的数据类型 （和 widget 任选其一指定或同时指定）</span>
+  <span class="token comment">//自定义 renderer 一般同时指定</span>
+  <span class="token keyword">static</span> type <span class="token operator">=</span> <span class="token string">"string"</span><span class="token punctuation">;</span>
+
+  <span class="token comment">//声明 widget 名称（和 type 任选其一指定或同时指定）</span>
+  <span class="token comment">//自定义 renderer 一般同时指定</span>
+  <span class="token keyword">static</span> widget <span class="token operator">=</span> <span class="token string">'custom'</span>
+
+  <span class="token comment">//编辑数据「正规化」处理函数</span>
+  <span class="token comment">//value  : 当前值</span>
+  <span class="token comment">//schema : 当前 shcema 描述</span>
+  <span class="token comment">//field  : 当前字段</span>
+  <span class="token keyword">static</span> <span class="token function">normalize</span><span class="token punctuation">(</span><span class="token parameter">value<span class="token punctuation">,</span> schema<span class="token punctuation">,</span> field</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">String</span><span class="token punctuation">(</span>value <span class="token operator">||</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">//声明是否支持「缩略」模式</span>
+  <span class="token keyword">protected</span> thumbable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+  <span class="token comment">//组件的顶层 HTML 容器的 `class` 方便写样式</span>
+  <span class="token keyword">protected</span> className <span class="token operator">=</span> <span class="token string">"string"</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">protected</span> <span class="token function-variable function">onChange</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>model<span class="token punctuation">.</span>value <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+    <span class="token comment">//在改变了模型数据后，需触发 `change`，参数可指定「节流时间（单位 ms）」</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">triggerChange</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//因为自定义 widget 常用处理一个完整的自定义对象，</span>
+    <span class="token comment">//如果进行自定义验证，可将验证结果反馈出来</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setValidateResult</span><span class="token punctuation">(</span><span class="token punctuation">{</span>state<span class="token punctuation">:</span><span class="token boolean">false</span><span class="token punctuation">,</span> message<span class="token punctuation">:</span><span class="token string">'错误消息'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">//组件渲染函数</span>
+  <span class="token keyword">protected</span> <span class="token function">renderEditor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//除了 value ，从 model 上还能获取 `schema`、`field`</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> value <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>model<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token operator">&lt;</span>Input
+        size<span class="token operator">=</span><span class="token string">"small"</span>
+        value<span class="token operator">=</span><span class="token punctuation">{</span><span class="token function">isNull</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">""</span> <span class="token punctuation">:</span> value<span class="token punctuation">}</span>
+        onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span>
+      <span class="token operator">/</span><span class="token operator">></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p><code>Model</code> 的实现及说明:</p>
+<pre><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> RendererViewModel <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@ali/formor"</span><span class="token punctuation">;</span>
+
+<span class="token comment">//ViewModel 通常不用有太多处理</span>
+<span class="token comment">//如果有需要可在 model 中增加处理方法和成员</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">StringViewModel</span> <span class="token keyword">extends</span> <span class="token class-name">RendererViewModel</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="%E6%B3%A8%E5%86%8C%E8%87%AA%E5%AE%9A%E4%B9%89-renderder">注册自定义 Renderder</h2>
+<pre><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> Form <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@ali/formor"</span><span class="token punctuation">;</span>
+
+<span class="token comment">//通过 `Form.register` 进行自定义 `renderer` 的注册</span>
+Form<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>YourRenderer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>renderer</code> 在注册后就可使用了，通过 <code>JSON Schema</code> 的扩展字段 <code>widget</code>
+声明某个数据项使用自定义的 <code>widget</code> 进行渲染和编辑。</p>
+<pre><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"object"</span><span class="token punctuation">,</span>
+  <span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"测试"</span><span class="token punctuation">,</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+      <span class="token property">"widget"</span><span class="token operator">:</span> <span class="token string">"your_widget"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</div></div></div></div></div></div><footer class="footer">Powered By <!-- -->doczilla<!-- --> v<!-- -->3.2.2</footer></div></div>
+  <script src="./data.js"></script>
+  <script src="./assets/index.js"></script>
+  <script src="./plugins/doczilla-highlight/index.js"></script></body>
+</body>
+
+</html>
