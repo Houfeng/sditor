@@ -18,10 +18,12 @@ export const ShortcutMaps = {
   },
   string: {
     default: "",
+    enum: ["A", "B", "C"],
     ...commonShortcuts
   },
   number: {
     default: 0,
+    enum: [1, 2, 3],
     min: Number.MIN_SAFE_INTEGER,
     max: Number.MAX_SAFE_INTEGER,
     ...commonShortcuts
