@@ -1,6 +1,6 @@
 {
   "name": "sditor",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "",
   "main": "./lib/index.js",
   "typings": "./build/index.d.ts",
@@ -9,6 +9,10 @@
   },
   "author": "",
   "license": "Apache License 2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Houfeng/sditor.git"
+  },
   "dependencies": {
     "codemirror-react": "^1.0.5",
     "font-awesome": "^4.7.0",

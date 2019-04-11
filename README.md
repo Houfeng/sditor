@@ -1,6 +1,6 @@
 # Sditor
 
-![sditor](https://img.alicdn.com/tfs/TB1pHK_QCzqK1RjSZPcXXbTepXa-1942-772.png)
+![sditor](https://img.alicdn.com/tfs/TB109UwQCzqK1RjSZFjXXblCFXa-2018-1016.png)
 
 ## Introduction 
 
