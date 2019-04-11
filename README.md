@@ -1,4 +1,4 @@
-# Sditor
+# Sditor = [ S ] chema + E [ Ditor ]
 
 ![sditor](https://img.alicdn.com/tfs/TB109UwQCzqK1RjSZFjXXblCFXa-2018-1016.png)
 
