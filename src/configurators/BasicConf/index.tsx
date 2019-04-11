@@ -40,9 +40,10 @@ export class BasicConf extends React.Component<IConfProps> {
   }
 
   renderMore() {
+    const { type } = this.model;
     return (
       <div>
-        <YamlEditor label="More:" data-bind="more" />
+        <YamlEditor type={type} label="More:" data-bind="more" />
       </div>
     );
   }

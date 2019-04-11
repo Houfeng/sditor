@@ -94,13 +94,13 @@ export class Designer extends React.Component<IDesignerPorps> {
     return items.filter(item => item.check(node)).map(item => item.button);
   }
 
-  renderPlaceholder() {
-    return <div className="placeholder">No content</div>;
+  renderPlaceholder(message = "") {
+    return <div className="placeholder">{message}</div>;
   }
 
   renderTree() {
     const { data, setData } = this.model;
-    if (!data || data.length < 1) return this.renderPlaceholder();
+    if (!data || data.length < 1) return this.renderPlaceholder("DESIGN AREA");
     const { canNodeHaveChildren, canDrop, canDrag, getNodeKey } = PropNode;
     return (
       <SortableTree
@@ -118,7 +118,7 @@ export class Designer extends React.Component<IDesignerPorps> {
 
   renderConf() {
     const { current } = this.model;
-    if (!current) return;
+    if (!current) return this.renderPlaceholder("CONF AREA");
     const origin = JSON.parse(JSON.stringify(current));
     return <AutoConf key={current.id} model={current} origin={origin} />;
   }
