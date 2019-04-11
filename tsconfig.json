@@ -20,8 +20,6 @@
     ],
   },
   "include": [
-    "./src/**/*",
-    "./templates/**/*",
-    "./example/**/*"
+    "./src/**/*"
   ]
 }

@@ -8,7 +8,7 @@
     "test": "dn test"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache License 2.0",
   "dependencies": {
     "codemirror-react": "^1.0.5",
     "font-awesome": "^4.7.0",
