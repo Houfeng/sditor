@@ -15,6 +15,17 @@
     box-sizing: border-box
   }
 
+  &.expand {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    width: auto;
+    z-index: 99;
+  }
+
   .toolbar {
     @size: 50px;
     width: @size + 8;

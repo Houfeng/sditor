@@ -7,6 +7,7 @@ import "./index.less";
 
 export interface ISrcViewerPorps {
   model: EditorModel;
+  editor: any;
 }
 
 @model(EditorModel)

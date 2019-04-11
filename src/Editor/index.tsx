@@ -25,14 +25,17 @@ export class Editor extends React.Component<IEditorPorps> {
 
   renderView() {
     const { mode } = this.model;
-    if (mode === Mode.design) return <Designer model={this.model} />;
-    return <SrcViewer model={this.model} />;
+    if (mode === Mode.design) {
+      return <Designer model={this.model} editor={this} />;
+    }
+    return <SrcViewer model={this.model} editor={this} />;
   }
 
   render() {
     const { style } = this.props;
+    const { display } = this.model;
     return (
-      <DockPanel className="sditor" style={style}>
+      <DockPanel className={`sditor ${display}`} style={style}>
         <DockPanel className="toolbar" dock="left">
           <Toolbar model={this.model} />
         </DockPanel>

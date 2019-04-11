@@ -10,6 +10,7 @@ import { AutoConf } from "../configurators/AutoConf";
 
 export interface IDesignerPorps {
   model: EditorModel;
+  editor: any;
 }
 
 @model(EditorModel)
@@ -123,12 +124,16 @@ export class Designer extends React.Component<IDesignerPorps> {
   }
 
   render() {
-    const { add: addNode } = this.model;
+    const { add, toggleDisplay, contraryDisplay } = this.model;
     return (
       <DockPanel className="designer">
         <DockPanel dock="right" className="conf">
           <DockPanel className="topbar" dock="top">
             <span className="caption">CONF</span>
+            <i
+              className={`fa fa-${contraryDisplay} fullscreen`}
+              onClick={toggleDisplay}
+            />
           </DockPanel>
           <DockPanel dock="fill" className="inner">
             {this.renderConf()}
@@ -137,7 +142,7 @@ export class Designer extends React.Component<IDesignerPorps> {
         <DockPanel className="tree" dock="fill">
           <DockPanel className="topbar" dock="top">
             <span className="caption">DESIGN</span>
-            <i className="fa fa-plus add" onClick={addNode} />
+            <i className="fa fa-plus add" onClick={add} />
           </DockPanel>
           <DockPanel dock="fill">{this.renderTree()}</DockPanel>
         </DockPanel>

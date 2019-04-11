@@ -3,13 +3,27 @@ import { Mode } from "./Mode";
 import { removeNodeAtPath } from "react-sortable-tree";
 import { Type } from "./Type";
 import { toSchema, fromSchema } from "./Converter";
+import { Display } from "./Display";
 
 export class EditorModel {
   mode: Mode = Mode.design;
+  display: Display = Display.compress;
   data: INode[] = [];
   current: INode = null;
 
   setMode = (mode: Mode) => (this.mode = mode);
+
+  setDisplay = (display: Display) => (this.display = display);
+
+  toggleDisplay = () => {
+    this.display = this.contraryDisplay;
+  };
+
+  get contraryDisplay() {
+    return Display.compress === this.display
+      ? Display.expand
+      : Display.compress;
+  }
 
   setCurrent = (node: INode) => {
     this.current = node;
