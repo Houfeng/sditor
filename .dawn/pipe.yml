@@ -24,7 +24,7 @@ build:
     entry: ./src/*.{js,jsx,ts,tsx}
     library: true
     umd:
-      library: 'formor'
+      library: 'sditor'
       libraryTarget: 'umd'
       umdNamedDefine: true
     compress: false
@@ -32,15 +32,30 @@ build:
       react: 
         commonjs: react
         commonjs2: react
-        root: React
       react-dom: 
         commonjs: react-dom
         commonjs2: react-dom
-        root: ReactDOM
       mota: 
         commonjs: mota
         commonjs2: mota
-        root: mota 
+      js-yaml: 
+        commonjs: js-yaml
+        commonjs2: js-yaml
+      react-dock-panel: 
+        commonjs: react-dock-panel
+        commonjs2: react-dock-panel
+      shortid: 
+        commonjs: shortid
+        commonjs2: shortid
+      react-sortable-tree: 
+        commonjs: react-sortable-tree
+        commonjs2: react-sortable-tree
+      codemirror-react: 
+        commonjs: codemirror-react
+        commonjs2: codemirror-react
+      font-awesome: 
+        commonjs: font-awesome
+        commonjs2: font-awesome
 
 test:
   - name: lint

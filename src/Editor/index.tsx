@@ -9,13 +9,18 @@ import DockPanel = require("react-dock-panel");
 import "./index.less";
 
 export interface IEditorPorps {
-  value: any;
+  onReady?: (model: EditorModel) => void;
 }
 
 @model(EditorModel)
 @binding
 export class Editor extends React.Component<IEditorPorps> {
   model: EditorModel;
+
+  componentDidMount() {
+    const { onReady } = this.props;
+    if (onReady) onReady(this.model);
+  }
 
   renderView() {
     const { mode } = this.model;

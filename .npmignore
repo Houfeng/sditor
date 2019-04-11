@@ -17,3 +17,4 @@ jsconfig.json
 .faked.js
 .eslintrc.json
 .eslintrc.yml
+pakcage.lock.json 
