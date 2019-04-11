@@ -2,19 +2,19 @@
 
 ![sditor](https://img.alicdn.com/tfs/TB1pHK_QCzqK1RjSZPcXXbTepXa-1942-772.png)
 
-## 简介 
+## Introduction 
 
 [ S ] chema + E [ Ditor ] = Sditor
 
-Sditor 是一个 [JSON Schema](http://json-schema.org/) 图形化编辑器组件，Sditor 基于 [TypeScript](https://www.typescriptlang.org/) 编写的 [React](https://reactjs.org/) 组件，只有很少的 API，可快捷的集到任意的 React 工程中。
+Sditor is a graphical editing component of [JSON Schema](http://json-schema.org/). It is a [React](https://www.typescriptlang.org/) component based on [TypeScript](https://reactjs.org/), which has very few APIs and can be quickly assembled into any React project.
 
-## 安装
+## Installation
 
 ```bash
 npm install sditor -S
 ```
 
-## 使用
+## How to use
 
 ```tsx
 import * as React from "react";
@@ -22,18 +22,18 @@ import { Editor, EditorModel } from "sditor";
 
 export class App extends React.Component {
   
-  //EditorModel 实例
+  //EditorModel instance
   editorModel: EditorModel;
 
   onEditorReady = (model:EditorModel)=> {
-    //可在这里设定初始值
+    //You can set the initial value here.
     model.schema = { ... };
-    //暂存 EditorModel 实例
+    //Temporary EditorModel instance
     this.editorModel = model;
   }
 
   onSave = ()=> {
-    //通过 editorModel 可获取当前编辑的 schema
+    //Get the current schema through editorModel
     const schema = this.editorModel.schema;
     console.log('schema', schema);
   }
@@ -48,9 +48,9 @@ export class App extends React.Component {
 }
 ```
 
-## 贡献
+## Contributing to Sditor
 
-- 需要安装依赖的构建工具 [dawn](https://github.com/alibaba/dawn)
-- fork 这个 repo，并 clone 到本地
-- 通过 `dn dev` 启动开发服务
-- 改进或增加新的 features ，通过 PR 提交
+- Dependent build tools need to be installed [dawn] (https://github.com/alibaba/dawn)
+- Fork this repo, and clone to the local
+- Start development services through `dn dev'
+- Improve or add new features, submitted through PR
