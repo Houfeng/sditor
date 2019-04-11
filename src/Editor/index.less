@@ -2,13 +2,18 @@
   background: #fff;
   user-select: none;
   line-height: initial;
-  height: 500px;
+  height: 350px;
   @border: 1px solid #d5d5d5;
   border: @border;
   box-shadow: 0 0 5px #ddd;
   box-sizing: border-box;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
   text-rendering: optimizeLegibility;
+
+  &,
+  * {
+    box-sizing: border-box
+  }
 
   .toolbar {
     @size: 50px;

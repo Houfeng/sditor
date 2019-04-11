@@ -1,178 +1,37 @@
 {
   "type": "object",
-  "title": "组件属性",
   "properties": {
-    "floorData": {
+    "user": {
       "type": "object",
-      "title": "楼层基础信息",
+      "title": "用户信息",
       "properties": {
-        "floorName": {
+        "name": {
           "type": "string",
-          "title": "楼层名称(需唯一)",
-          "default": "你好中国"
+          "title": "姓名"
         },
-        "anchor": {
-          "type": "boolean",
-          "title": "是否需要添加至电梯中"
-        },
-        "paddingTop": {
+        "age": {
           "type": "number",
-          "title": "上边距"
+          "title": "年龄",
+          "default": 18
         },
-        "paddingBottom": {
-          "type": "number",
-          "title": "下边距"
-        },
-        "backgroundColor": {
+        "email": {
           "type": "string",
-          "title": "楼层背景颜色",
-          "widget": "color"
-        },
-        "backgroundImage": {
-          "type": "string",
-          "title": "楼层背景图片",
-          "widget": "pic"
-        },
-        "cardSort": {
-          "type": "string",
-          "title": "商品卡片排列规则",
-          "description": "4种卡片代号分别为 A,B,C,D 英文逗号分隔"
+          "title": "邮箱"
         }
       }
     },
-    "largeProductCardList": {
+    "tags": {
       "type": "array",
-      "title": "大图商品卡片（别名：A）",
+      "title": "标签",
+      "description": "",
       "items": {
-        "type": "object",
-        "title": "商品",
-        "properties": {
-          "productCode": {
-            "type": "string",
-            "title": "商品code"
-          },
-          "couponId": {
-            "type": "string",
-            "title": "优惠券id"
-          },
-          "orderPageUrl": {
-            "type": "string",
-            "title": "订单页url",
-            "description": "领券弹窗中「立即用券」的 href"
-          },
-          "backgroundImg": {
-            "type": "string",
-            "title": "背景图片",
-            "widget": "pic",
-            "description": "规格：325*127*n"
-          },
-          "productName": {
-            "type": "string",
-            "title": "商品名称"
-          },
-          "productUrl": {
-            "type": "string",
-            "title": "商品链接"
-          },
-          "bigfontDesc": {
-            "type": "string",
-            "title": "商品描述（大字）"
-          },
-          "description": {
-            "type": "string",
-            "title": "商品描述（小字）"
-          },
-          "peoplelogo": {
-            "type": "string",
-            "title": "人物头像",
-            "widget": "pic"
-          },
-          "peopleDescription": {
-            "type": "string",
-            "title": "人物描述"
-          },
-          "tagList": {
-            "type": "array",
-            "title": "标签列表",
-            "description": "注意长度，整体保证一行展示！",
-            "items": {
-              "type": "object",
-              "title": "标签",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "title": "标签名称"
-                }
-              }
-            }
-          },
-          "price": {
-            "type": "number",
-            "title": "商品价格"
-          },
-          "originalPrice": {
-            "type": "number",
-            "title": "商品原价"
-          },
-          "priceUnit": {
-            "type": "string",
-            "title": "价格单位",
-            "description": "举例：年"
-          },
-          "couponName": {
-            "type": "string",
-            "title": "优惠券名称（小标题）",
-            "description": "举例：50元优惠券"
-          },
-          "couponDesc": {
-            "type": "string",
-            "title": "优惠券可用描述"
-          },
-          "isTrial": {
-            "type": "boolean",
-            "title": "是否免费试用"
-          },
-          "tagMoreTxt": {
-            "type": "string",
-            "title": "标签右侧的店铺通用文案",
-            "description": "不通用即不填写"
-          },
-          "tagMoreUrl": {
-            "type": "string",
-            "title": "「店铺通用」的链接"
-          }
-        }
-      },
-      "maxItems": 2
-    },
-    "decorationh5List": {
-      "type": "array",
-      "title": "楼层装饰物h5（开发填写）",
-      "items": {
-        "type": "object",
-        "title": "装饰物信息",
-        "properties": {
-          "img": {
-            "type": "string",
-            "title": "图片地址"
-          },
-          "posX": {
-            "type": "string",
-            "title": "位置信息 X 轴"
-          },
-          "posY": {
-            "type": "string",
-            "title": "位置信息 Y 轴"
-          },
-          "size": {
-            "type": "string",
-            "title": "宽度"
-          },
-          "zIndex": {
-            "type": "number",
-            "title": "层级zindex"
-          }
-        }
+        "type": "string",
+        "title": "items",
+        "description": "",
+        "enum": [
+          "A - B"
+        ],
+        "default": "A"
       }
     }
   }
