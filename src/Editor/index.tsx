@@ -9,6 +9,7 @@ import DockPanel = require("react-dock-panel");
 import "./index.less";
 
 export interface IEditorPorps {
+  style?: any;
   onReady?: (model: EditorModel) => void;
 }
 
@@ -29,9 +30,9 @@ export class Editor extends React.Component<IEditorPorps> {
   }
 
   render() {
-    (window as any).model = this.model;
+    const { style } = this.props;
     return (
-      <DockPanel className="sditor">
+      <DockPanel className="sditor" style={style}>
         <DockPanel className="toolbar" dock="left">
           <Toolbar model={this.model} />
         </DockPanel>
