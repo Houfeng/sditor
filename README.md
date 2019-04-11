@@ -50,7 +50,7 @@ export class App extends React.Component {
 
 ## Contributing to Sditor
 
-- Dependent build tools need to be installed [dawn] (https://github.com/alibaba/dawn)
+- Dependent build tools need to be installed [dawn](https://github.com/alibaba/dawn)
 - Fork this repo, and clone to the local
 - Start development services through `dn dev'
 - Improve or add new features, submitted through PR
