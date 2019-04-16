@@ -19,7 +19,7 @@ const items = [
   }
 ];
 
-@model(EditorModel)
+@model
 @binding
 export class Toolbar extends React.Component<IToolbarPorps> {
   model: EditorModel;
