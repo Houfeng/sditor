@@ -10,27 +10,19 @@ export interface ISrcViewerPorps {
   editor: any;
 }
 
-@model(EditorModel)
+@model
 @binding
 export class SrcViewer extends React.Component<ISrcViewerPorps> {
   model: EditorModel;
 
   render() {
-    const { source } = this.model;
     return (
       <DockPanel className="source">
         <DockPanel className="topbar" dock="top">
           <span className="caption">SOURCE</span>
         </DockPanel>
         <DockPanel dock="fill">
-          <CodeMirror
-            value={source}
-            mode="javascript"
-            theme="elegant"
-            tabSize={2}
-            readOnly={true}
-            lineNumbers={true}
-          />
+          <CodeMirror data-bind="source" />
         </DockPanel>
       </DockPanel>
     );

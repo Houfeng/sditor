@@ -13,7 +13,7 @@ export interface IDesignerPorps {
   editor: any;
 }
 
-@model(EditorModel)
+@model
 @binding
 export class Designer extends React.Component<IDesignerPorps> {
   model: EditorModel;

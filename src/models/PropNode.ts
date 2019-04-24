@@ -19,7 +19,7 @@ export interface INode {
 
 export class PropNode implements INode {
   id: string = "F" + shortid.generate();
-  type: Type = Type.object;
+  type: Type = Type.string;
   name = this.id;
   title = this.name;
   children: INode[] = [];

@@ -1,6 +1,6 @@
 {
   "name": "sditor",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "",
   "main": "./lib/index.js",
   "typings": "./build/index.d.ts",
@@ -14,10 +14,10 @@
     "url": "https://github.com/Houfeng/sditor.git"
   },
   "dependencies": {
-    "codemirror-react": "^1.0.5",
+    "codemirror-react": "^2.0.3",
     "font-awesome": "^4.7.0",
     "js-yaml": "^3.13.1",
-    "mota": "^3.0.5",
+    "mota": "^3.2.0",
     "react": "^16.8.3",
     "react-dock-panel": "^1.0.9",
     "react-dom": "^16.8.3",
