@@ -27,7 +27,7 @@ export class SrcViewer extends React.Component<ISrcViewerPorps> {
           />
         </DockPanel>
         <DockPanel dock="fill">
-          <CodeMirror data-bind="source" />
+          <CodeMirror data-bind="source" mode="javascript" theme="elegant" />
         </DockPanel>
       </DockPanel>
     );

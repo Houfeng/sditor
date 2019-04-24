@@ -61,7 +61,7 @@ export class EditorModel {
   set source(value) {
     try {
       this.schema = JSON.parse(value);
-    } catch{ }
+    } catch {}
   }
 
   set schema(value) {
