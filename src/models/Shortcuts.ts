@@ -2,7 +2,7 @@ import { Type } from "./Type";
 
 export const commonShortcuts = {
   // tslint:disable-next-line
-  "requried": false,
+  "requried": true,
   "x-widget": null,
   "x-options": null
 };
