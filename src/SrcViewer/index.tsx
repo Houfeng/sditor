@@ -16,10 +16,15 @@ export class SrcViewer extends React.Component<ISrcViewerPorps> {
   model: EditorModel;
 
   render() {
+    const { toggleDisplay, contraryDisplay } = this.model;
     return (
       <DockPanel className="source">
         <DockPanel className="topbar" dock="top">
           <span className="caption">SOURCE</span>
+          <i
+            className={`fa fa-${contraryDisplay} fullscreen`}
+            onClick={toggleDisplay}
+          />
         </DockPanel>
         <DockPanel dock="fill">
           <CodeMirror data-bind="source" />

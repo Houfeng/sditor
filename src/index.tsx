@@ -1,5 +1,6 @@
 import "react-sortable-tree/style.css";
 import "font-awesome/css/font-awesome.css";
+import "codemirror-react/build/css/index.css";
 
 export * from "./Editor";
 
